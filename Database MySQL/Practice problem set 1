@@ -1,0 +1,34 @@
+-- Determine the third highest salary holder informations 
+
+select * from employees 
+where salary =(select max(salary) from employees
+where salary <(select max(salary) from employees
+where salary <(select max(salary) from employees)
+)
+);
+
+-- Determine the third lowest salary holder informations 
+
+select * from employees 
+where salary =(select min(salary) from employees 
+where salary > (select min(salary) from employees
+where salary > (select min(salary) from employees )
+)
+);
+
+-- Which employee has been hired after first Steven
+
+select * from employees 
+where hire_date > (select hire_date from employees 
+where first
+_name ='Steven'
+limit 1
+); 
+
+-- Which employee has been hired after second Steven
+select * from employees 
+where hire_date > (select hire_date from employees 
+where first_name ='Steven'
+limit 1,1
+); 
+
